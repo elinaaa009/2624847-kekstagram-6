@@ -1,19 +1,15 @@
-import {renderThumbnails} from './thumbnail.js';
-import {generatePhotosArray} from './data.js';
+import { renderThumbnails } from './thumbnail.js';
 import { openBigPicture } from './big-picture.js';
-import { initForm } from './hashtags-pristine.js';
+import { getDataFromServer } from './api.js';
+import './hashtags-pristine.js';
 
-const photos = generatePhotosArray();
-renderThumbnails(photos);
+getDataFromServer(
+  (photos) => {
+    renderThumbnails(photos, openBigPicture);
+  },
+  () => {
+    alert('Не удалось загрузить данные');
+  }
+);
 
-const addThumbnailClickHandlers = () => {
-  const thumbnails = document.querySelectorAll('.picture');
-  thumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener('click', () => {
-      openBigPicture(photos[index]);
-    });
-  });
-};
-
-addThumbnailClickHandlers();
 initForm();
