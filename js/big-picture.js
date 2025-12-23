@@ -65,7 +65,7 @@ const resetComments = () => {
   socialComments.innerHTML = '';
 };
 
-const loadMoreComments = () => {
+const onCommentsLoaderClick = () => {
   renderCommentsPortion();
 };
 
@@ -89,23 +89,28 @@ const openBigPicture = (photoData) => {
   bigPicture.classList.remove('hidden');
 
   document.body.classList.add('modal-open');
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   resetComments();
+  document.removeEventListener('keydown', onDocumentKeydown);
 };
 
-closeButton.addEventListener('click', () => {
+const onCloseButtonClick = () => {
   closeBigPicture();
-});
+};
 
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape' && !bigPicture.classList.contains('hidden')) {
+closeButton.addEventListener('click', onCloseButtonClick);
+
+const onDocumentKeydown = (evt) => {
+  if (evt.key === 'Escape') {
+    evt.preventDefault();
     closeBigPicture();
   }
-});
+};
 
-commentsLoader.addEventListener('click', loadMoreComments);
+commentsLoader.addEventListener('click', onCommentsLoaderClick);
 export { openBigPicture };
