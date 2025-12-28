@@ -189,16 +189,16 @@ const showMessage = (template, isError = false) => {
   const messageElement = template.cloneNode(true);
 
   document.body.appendChild(messageElement);
-
+  
   if (isError) {
     messageElement.style.zIndex = '1000';
 
-    const closeMessage = () => {
+    function closeMessage() {
       messageElement.remove();
       document.removeEventListener('keydown', onEscKeydown);
       document.removeEventListener('click', onOutsideClick);
-    };
-
+    }
+    
     function onEscKeydown(evt) {
       if (isEscKey(evt)) {
         evt.stopPropagation();
@@ -225,23 +225,23 @@ const showMessage = (template, isError = false) => {
     }, { capture: true });
 
   } else {
-    const closeMessage = () => {
+    function closeMessage() {
       messageElement.remove();
       document.removeEventListener('keydown', onEscKeydown);
       document.removeEventListener('click', onOutsideClick);
-    };
+    }
 
-    const onEscKeydown = (evt) => {
+    const onEscKeydown(evt) {
       if (isEscKey(evt)) {
         closeMessage();
       }
-    };
+    }
 
-    const onOutsideClick = (evt) => {
+    const onOutsideClick(evt) {
       if (!evt.target.closest('.success__inner')) {
         closeMessage();
       }
-    };
+    }
 
     const closeButton = messageElement.querySelector('.success__button');
     closeButton.addEventListener('click', closeMessage);

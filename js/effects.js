@@ -69,8 +69,8 @@ const updateSlider = (effect) => {
 
 const applyEffect = (effect, value) => {
   const effectConfig = Effects[effect];
-  if (!effectConfig) { 
-    return; 
+  if (!effectConfig) {
+    return;
   }
 
   const { filter, unit } = effectConfig;
@@ -97,7 +97,7 @@ const onEffectChange = (evt) => {
     const effectConfig = Effects[currentEffect];
     if (effectConfig) {
       applyEffect(currentEffect, effectConfig.max);
-    };
+    }
   }
 };
 
@@ -140,4 +140,3 @@ const destroyFormEffects = () => {
 };
 
 export { form, initFormEffects, resetFormEffects, destroyFormEffects };
-
