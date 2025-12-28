@@ -199,18 +199,18 @@ const showMessage = (template, isError = false) => {
       document.removeEventListener('click', onOutsideClick);
     };
 
-    const onEscKeydown = (evt) => {
+    function onEscKeydown(evt) {
       if (isEscKey(evt)) {
         evt.stopPropagation();
         closeMessage();
       }
-    };
+    }
 
-    const onOutsideClick = (evt) => {
+    function onOutsideClick(evt) {
       if (!evt.target.closest('.error__inner')) {
         closeMessage();
       }
-    };
+    }
 
     const closeButton = messageElement.querySelector('.error__button');
     closeButton.addEventListener('click', closeMessage);
