@@ -55,7 +55,9 @@ const createSlider = () => {
 
 const updateSlider = (effect) => {
   const effectConfig = Effects[effect];
-  if (!effectConfig) return;
+  if (!effectConfig) {
+    return;
+  }
 
   const { min, max, step } = effectConfig;
   effectLevelSlider.noUiSlider.updateOptions({
@@ -67,7 +69,9 @@ const updateSlider = (effect) => {
 
 const applyEffect = (effect, value) => {
   const effectConfig = Effects[effect];
-  if (!effectConfig) return;
+  if (!effectConfig) { 
+    return; 
+  }
 
   const { filter, unit } = effectConfig;
 
@@ -92,7 +96,7 @@ const onEffectChange = (evt) => {
     updateSlider(currentEffect);
     const effectConfig = Effects[currentEffect];
     if (effectConfig) {
-    applyEffect(currentEffect, effectConfig.max);
+      applyEffect(currentEffect, effectConfig.max);
     };
   }
 };
