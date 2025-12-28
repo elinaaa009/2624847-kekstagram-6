@@ -188,30 +188,30 @@ const unblockSubmit = () => {
 const showSuccessMessage = () => {
   const template = successTemplate;
   const messageElement = template.cloneNode(true);
-  
+
   document.body.appendChild(messageElement);
-  
+
   function closeMessage() {
     messageElement.remove();
     document.removeEventListener('keydown', onEscKeydown);
     document.removeEventListener('click', onOutsideClick);
   }
-  
+
   function onEscKeydown(evt) {
     if (isEscKey(evt)) {
       closeMessage();
     }
   }
-  
+
   function onOutsideClick(evt) {
     if (!evt.target.closest('.success__inner')) {
       closeMessage();
     }
   }
-  
+
   const closeButton = messageElement.querySelector('.success__button');
   closeButton.addEventListener('click', closeMessage);
-  
+
   document.addEventListener('keydown', onEscKeydown);
   document.addEventListener('click', onOutsideClick);
 };
@@ -219,35 +219,35 @@ const showSuccessMessage = () => {
 const showErrorMessage = () => {
   const template = errorTemplate;
   const messageElement = template.cloneNode(true);
-  
+
   messageElement.style.zIndex = '1000';
   document.body.appendChild(messageElement);
-  
+
   function closeMessage() {
     messageElement.remove();
     document.removeEventListener('keydown', onEscKeydown);
     document.removeEventListener('click', onOutsideClick);
   }
-  
+
   function onEscKeydown(evt) {
     if (isEscKey(evt)) {
       evt.stopPropagation();
       closeMessage();
     }
   }
-  
+
   function onOutsideClick(evt) {
     if (!evt.target.closest('.error__inner')) {
       closeMessage();
     }
   }
-  
+
   const closeButton = messageElement.querySelector('.error__button');
   closeButton.addEventListener('click', closeMessage);
-  
+
   document.addEventListener('keydown', onEscKeydown);
   document.addEventListener('click', onOutsideClick);
-  
+
   document.addEventListener('keydown', (evt) => {
     if (isEscKey(evt)) {
       evt.stopPropagation();
@@ -269,11 +269,11 @@ form.addEventListener('submit', (evt) => {
     () => {
       unblockSubmit();
       closeForm();
-      showSuccessMessage(); 
+      showSuccessMessage();
     },
     () => {
       unblockSubmit();
-      showErrorMessage(); 
+      showErrorMessage();
     },
     new FormData(form)
   );
