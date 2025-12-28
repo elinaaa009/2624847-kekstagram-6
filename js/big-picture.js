@@ -107,12 +107,12 @@ const onCloseButtonClick = () => {
 
 closeButton.addEventListener('click', onCloseButtonClick);
 
-const onDocumentKeydown = (evt) => {
+function onDocumentKeydown(evt) {
   if (isEscKey(evt)) {
     evt.preventDefault();
     closeBigPicture();
   }
-};
+}
 
 commentsLoader.addEventListener('click', onCommentsLoaderClick);
 export { openBigPicture };
